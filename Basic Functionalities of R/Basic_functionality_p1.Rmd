@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Checking the basic R functionalities on inbuilt dataset "faithful"
+For loading data we will use data() method
+
+```{r}
+data("faithful")
+
+#Checking all column or variable names in the given table
+names(faithful)
+
+#Loading the data of variable "waiting" into load_variable_wait 
+load_variable_wait <- faithful$waiting
+head(load_variable_wait, 15)
+
+#Calculating range of values for the variable "waiting"
+range(load_variable_wait)
+```
+
+```{r}
+#Loading the data of variable "eruptions" into load_variable_eruption
+load_variable_eruption <- faithful$eruptions
+head(load_variable_eruption, 15)
+
+#Calculating range of values for the variable "waiting"
+range(load_variable_eruption)
+```
+
+```{r}
+#Creating intervals of data, as range of eruptions lie between 1.6 to 5.1, we are taking intervals from 1.5 to 5.5 having gap of 0.5    For this we are gonna use seq() method
+
+intervals <- seq(1.5, 5.5, by = 0.5)
+intervals
+```
+
+```{r}
+#Divifing the data of load_variable_eruption data into intervals we created above. For this we are using cut() method and we have set right=FALSE because in itervals the upper-value will not be accepted.
+load_variable_eruption_cut <- cut(load_variable_eruption, intervals, right=FALSE)
+
+#Setting the frequecy of data which falls under the corresponding interval. For this we are using cbind() method for creating a single table and table() method for getting frequencies
+load_variable_eruption_freq <- cbind(table(load_variable_eruption_cut))
+load_variable_eruption_freq
+```
+
+```{r}
+#Scatter plot for the dataset faithful. Waiting vs Eruptions
+plot(faithful)
+```
+
+
+```{r}
+by <- 0.5
+a <- intervals - by/2
+b <- intervals + by/2
+
+break_for_hist <- c(a[1], b)
+  
+hist(load_variable_eruption_freq, xlab="Waiting", ylab="Eruptions", main="Faithful")
+```
+

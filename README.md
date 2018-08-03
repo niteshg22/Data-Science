@@ -1,0 +1,1 @@
+This repository contains all the stuff related to Data Analytics. All the analysis done on different data-sets using R and Excel.
